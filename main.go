@@ -120,8 +120,8 @@ func (app *App) initializeGauges() {
 	vocGauge := promauto.NewGauge(prometheus.GaugeOpts{
 		Namespace: "awair",
 		Subsystem: "climate",
-		Name:      "voc_index",
-		Help:      "The current Volatile Organic Compound Index reading",
+		Name:      "voc_ppb",
+		Help:      "The current Volatile Organic Compound reading in parts per billion",
 	})
 
 	pm25Gauge := promauto.NewGauge(prometheus.GaugeOpts{
