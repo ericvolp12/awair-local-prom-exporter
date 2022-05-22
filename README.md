@@ -1,4 +1,4 @@
-# Awair Local Proemtheus Exporter
+# Awair Local Prometheus Exporter
 
 It's a Prometheus Exporter that talks to a local Awair device over its local JSON API and exports its metrics.
 
