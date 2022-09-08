@@ -137,14 +137,14 @@ func (app *App) initializeGauges() {
 		Subsystem: "climate",
 		Name:      "score",
 		Help:      "The current Awair Score",
-    })
+	})
 
 	app.TempGauge = tempGauge
 	app.HumidityGauge = humidityGauge
 	app.Co2Gauge = co2Gauge
 	app.VOCGauge = vocGauge
 	app.PM25Gauge = pm25Gauge
-    app.ScoreGauge = scoreGauge
+	app.ScoreGauge = scoreGauge
 }
 
 func (app *App) recordMetrics() {
