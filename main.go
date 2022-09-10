@@ -24,6 +24,7 @@ type App struct {
 	Co2Gauge          prometheus.Gauge
 	VOCGauge          prometheus.Gauge
 	PM25Gauge         prometheus.Gauge
+	ScoreGauge        prometheus.Gauge
 	Logger            *zap.SugaredLogger
 }
 
@@ -131,11 +132,19 @@ func (app *App) initializeGauges() {
 		Help:      "The current concentration of 2.5 micron particles in micrograms per meter cubed",
 	})
 
+	scoreGauge := promauto.NewGauge(prometheus.GaugeOpts{
+		Namespace: "awair",
+		Subsystem: "climate",
+		Name:      "score",
+		Help:      "The current Awair Score",
+	})
+
 	app.TempGauge = tempGauge
 	app.HumidityGauge = humidityGauge
 	app.Co2Gauge = co2Gauge
 	app.VOCGauge = vocGauge
 	app.PM25Gauge = pm25Gauge
+	app.ScoreGauge = scoreGauge
 }
 
 func (app *App) recordMetrics() {
@@ -169,6 +178,7 @@ func (app *App) getAwairData() {
 		return
 	}
 
+	app.ScoreGauge.Set(float64(awairStats.Score))
 	app.TempGauge.Set(awairStats.Temp)
 	app.HumidityGauge.Set(awairStats.Humid)
 	app.Co2Gauge.Set(float64(awairStats.Co2))
