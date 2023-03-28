@@ -15,12 +15,12 @@ Run the binary with default arguments or provide your own:
 ```shell
 $ awair-local-prom-exporter --help
 Usage of awair-local-prom-exporter:
-  -awair_address string
-        Awair air-data URL (default "http://localhost/air-data/latest")
+  -awair_addresses string
+        Comma-separated list of Awair air-data URLs (default "http://localhost/air-data/latest")
   -listen string
         Listen address (default "0.0.0.0")
   -poll_frequency string
-        Time (seconds) to wait between polling device (default "30s")
+        Time (seconds) to wait between polling devices (default "30s")
   -port uint
         Listen port number (default 2112)
 ```
@@ -38,7 +38,7 @@ Documentation=https://github.com/ericvolp12/awair-local-prom-exporter
 [Service]
 Restart=always
 User=prometheus
-ExecStart=/<path_to_binary>/awair-local-prom-exporter --port 2155 --listen 0.0.0.0 --awair_address http://<local_awair_device_address>/air-data/latest --poll_frequency 30s
+ExecStart=/<path_to_binary>/awair-local-prom-exporter --port 2155 --listen 0.0.0.0 --awair_addresses http://<local_awair_device_address>/air-data/latest --poll_frequency 30s
 
 [Install]
 WantedBy=multi-user.target
